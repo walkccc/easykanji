@@ -1,6 +1,6 @@
 import type { NextConfig } from 'next';
 
-const repoName = 'furioke';
+const repoName = 'easykanji';
 const basePath = process.env.NODE_ENV === 'production' ? `/${repoName}` : '';
 
 const nextConfig: NextConfig = {
@@ -9,6 +9,7 @@ const nextConfig: NextConfig = {
   assetPrefix: basePath,
   env: { NEXT_PUBLIC_BASE_PATH: basePath },
   images: { unoptimized: true },
+  allowedDevOrigins: ['192.168.1.222'],
 };
 
 export default nextConfig;

@@ -14,7 +14,11 @@
       "Bash(node:*)",
       "Bash(npm run type-check:*)",
       "Bash(npx eslint:*)",
-      "Bash(find /Users/Jay/Repos/furioke -maxdepth 2 -type f ! -path */node_modules/* ! -path */.next/* ! -path */out/*)"
+      "Bash(find /Users/Jay/Repos/furioke -maxdepth 2 -type f ! -path */node_modules/* ! -path */.next/* ! -path */out/*)",
+      "Bash(find /Users/Jay/Repos/furioke -type d -not -path */node_modules/* -not -path */.git/*)",
+      "Bash(npm install:*)",
+      "Bash(npx:*)",
+      "Bash(identify /Users/Jay/Repos/furioke/public/favicon.png)"
     ],
     "deny": [],
     "ask": []
