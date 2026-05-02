@@ -5,6 +5,7 @@ import {
   Copy,
   Download,
   EllipsisVertical,
+  Languages,
   Printer,
   Sparkles,
   SquareSplitHorizontal,
@@ -19,11 +20,17 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Input } from '@/components/ui/input';
 import { type Layout, useLanguage } from '@/lib/i18n';
+import {
+  TRANSLATION_TARGET_LABEL,
+  type TranslationTarget,
+} from '@/lib/translation';
 
 interface ToolbarProps {
   onGenerate: () => void;
@@ -40,6 +47,8 @@ interface ToolbarProps {
   onClear: () => void;
   title: string;
   onTitleChange: (title: string) => void;
+  translationTarget: TranslationTarget;
+  onTranslationTargetChange: (target: TranslationTarget) => void;
 }
 
 export function Toolbar({
@@ -57,6 +66,8 @@ export function Toolbar({
   onClear,
   title,
   onTitleChange,
+  translationTarget,
+  onTranslationTargetChange,
 }: ToolbarProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { t } = useLanguage();
@@ -110,6 +121,39 @@ export function Toolbar({
             placeholder={t.titlePlaceholder}
             className="mx-auto h-7 max-w-md min-w-36 flex-1 text-sm"
           />
+
+          {/* Translation target — always visible */}
+          <DropdownMenu>
+            <DropdownMenuTrigger
+              className="border-input bg-background hover:bg-muted hover:text-foreground inline-flex h-7 cursor-pointer items-center gap-1 rounded-md border px-2 text-xs"
+              title={t.translation}
+            >
+              <Languages className="h-3.5 w-3.5 shrink-0" />
+              <span className="hidden md:inline">
+                {translationTarget === 'off'
+                  ? t.translationOff
+                  : TRANSLATION_TARGET_LABEL[translationTarget]}
+              </span>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuRadioGroup
+                value={translationTarget}
+                onValueChange={(v) =>
+                  onTranslationTargetChange(v as TranslationTarget)
+                }
+              >
+                <DropdownMenuRadioItem value="off">
+                  {t.translationOff}
+                </DropdownMenuRadioItem>
+                <DropdownMenuRadioItem value="en">
+                  {TRANSLATION_TARGET_LABEL.en}
+                </DropdownMenuRadioItem>
+                <DropdownMenuRadioItem value="zh-tw">
+                  {TRANSLATION_TARGET_LABEL['zh-tw']}
+                </DropdownMenuRadioItem>
+              </DropdownMenuRadioGroup>
+            </DropdownMenuContent>
+          </DropdownMenu>
 
           {/* Layout toggle — always visible */}
           <ToolbarButton
