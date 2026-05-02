@@ -104,24 +104,20 @@ interface RubyViewProps {
 }
 
 function RubyView({ token, target }: RubyViewProps) {
-  const content = (
-    <ruby>
-      {token.pairs.map((pair, idx) =>
-        pair.reading ? (
-          <span key={idx}>
-            {pair.surface}
-            <rt className="text-muted-foreground text-[0.55em] select-none">
-              {pair.reading}
-            </rt>
-          </span>
-        ) : (
-          <span key={idx}>{pair.surface}</span>
-        ),
-      )}
-    </ruby>
+  const content = token.pairs.map((pair, idx) =>
+    pair.reading ? (
+      <ruby key={idx}>
+        {pair.surface}
+        <rt className="text-muted-foreground text-[0.55em] select-none">
+          {pair.reading}
+        </rt>
+      </ruby>
+    ) : (
+      <span key={idx}>{pair.surface}</span>
+    ),
   );
 
-  if (target === 'off') return content;
+  if (target === 'off') return <>{content}</>;
 
   return (
     <WordTooltip text={token.text} target={target}>
