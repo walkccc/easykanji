@@ -16,6 +16,7 @@ import {
 import { exportJson, importJson } from '@/lib/io';
 import { generateFurigana } from '@/lib/kuromoji-tokenizer';
 import { parseToHtml } from '@/lib/parser';
+import type { TranslationTarget } from '@/lib/translation';
 
 export default function Page() {
   const [lyrics, setLyrics] = useState<string>('');
@@ -23,6 +24,8 @@ export default function Page() {
   const [layout, setLayout] = useState<Layout>('both');
   const [isAnalyzing, setIsAnalyzing] = useState<boolean>(false);
   const [language, setLanguage] = useState<Language>('ja');
+  const [translationTarget, setTranslationTarget] =
+    useState<TranslationTarget>('off');
   const [isDragging, setIsDragging] = useState(false);
   const hydrated = useRef(false);
   const dragCounter = useRef(0);
@@ -44,6 +47,16 @@ export default function Page() {
     if (storedTitle !== null) setTitle(storedTitle);
     const storedLyrics = localStorage.getItem('furioke:lyrics');
     if (storedLyrics !== null) setLyrics(storedLyrics);
+    const storedTarget = localStorage.getItem(
+      'furioke:translationTarget',
+    ) as TranslationTarget | null;
+    if (
+      storedTarget === 'off' ||
+      storedTarget === 'en' ||
+      storedTarget === 'zh-tw'
+    ) {
+      setTranslationTarget(storedTarget);
+    }
     hydrated.current = true;
   }, []);
 
@@ -61,6 +74,11 @@ export default function Page() {
     if (!hydrated.current) return;
     localStorage.setItem('furioke:lyrics', lyrics);
   }, [lyrics]);
+
+  useEffect(() => {
+    if (!hydrated.current) return;
+    localStorage.setItem('furioke:translationTarget', translationTarget);
+  }, [translationTarget]);
 
   function cycleLayout() {
     setLayout((v) =>
@@ -206,6 +224,8 @@ ruby { break-inside: avoid; }
               onClear={handleClear}
               title={title}
               onTitleChange={setTitle}
+              translationTarget={translationTarget}
+              onTranslationTargetChange={setTranslationTarget}
             />
           }
           editor={
@@ -215,7 +235,13 @@ ruby { break-inside: avoid; }
               visible={layout !== 'preview'}
             />
           }
-          preview={<PreviewPane html={previewHtml} />}
+          preview={
+            <PreviewPane
+              html={previewHtml}
+              raw={lyrics}
+              translationTarget={translationTarget}
+            />
+          }
         />
 
         {isDragging && (
