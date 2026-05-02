@@ -90,17 +90,16 @@ function parseRubyPairs(surface: string, reading: string): RubyPair[] {
   const aligned = alignSegment(surface, reading);
   const pairs: RubyPair[] = [];
   let lastIndex = 0;
-  RUBY_RE.lastIndex = 0;
-  let match: RegExpExecArray | null;
-  while ((match = RUBY_RE.exec(aligned)) !== null) {
-    if (match.index > lastIndex) {
+  for (const match of aligned.matchAll(RUBY_RE)) {
+    const idx = match.index ?? 0;
+    if (idx > lastIndex) {
       pairs.push({
-        surface: aligned.slice(lastIndex, match.index),
+        surface: aligned.slice(lastIndex, idx),
         reading: '',
       });
     }
     pairs.push({ surface: match[1], reading: match[2] });
-    lastIndex = match.index + match[0].length;
+    lastIndex = idx + match[0].length;
   }
   if (lastIndex < aligned.length) {
     pairs.push({ surface: aligned.slice(lastIndex), reading: '' });
@@ -115,12 +114,11 @@ export function tokenizeLine(line: string): Line {
   const tokens: LineToken[] = [];
   let plain = '';
   let lastIndex = 0;
-  RUBY_RE.lastIndex = 0;
 
-  let match: RegExpExecArray | null;
-  while ((match = RUBY_RE.exec(line)) !== null) {
-    if (match.index > lastIndex) {
-      const between = line.slice(lastIndex, match.index);
+  for (const match of line.matchAll(RUBY_RE)) {
+    const idx = match.index ?? 0;
+    if (idx > lastIndex) {
+      const between = line.slice(lastIndex, idx);
       tokens.push(...segmentPlainText(between));
       plain += between;
     }
@@ -132,7 +130,7 @@ export function tokenizeLine(line: string): Line {
       pairs: parseRubyPairs(surface, reading),
     });
     plain += surface;
-    lastIndex = match.index + match[0].length;
+    lastIndex = idx + match[0].length;
   }
   if (lastIndex < line.length) {
     const tail = line.slice(lastIndex);
