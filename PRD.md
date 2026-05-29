@@ -1,4 +1,4 @@
-# Furioke - Easy Japanese Lyrics by Furigara PRD
+# Easykanji - Easy Japanese Lyrics by Furigara PRD
 
 ## Overview
 

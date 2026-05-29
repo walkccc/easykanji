@@ -55,7 +55,7 @@ export const translations: Record<Language, Translations> = {
     editorPlaceholder:
       'Paste lyrics here, then click Generate ✨\n\nOr use the markup directly:\n｜漢字｜かな｜\n\nExample:\n｜今日｜きょう｜は｜良｜よ｜い｜天気｜てんき｜です',
     previewEmpty: 'Preview will appear here...',
-    footerText: '© 2026 Furioke — Japanese lyrics with furigana (振り仮名)',
+    footerText: '© 2026 Easykanji — Japanese lyrics with furigana (振り仮名)',
     dropOverlay: 'Drop JSON file to import',
     translation: 'Translation',
     translationOff: 'Off',
@@ -79,7 +79,7 @@ export const translations: Record<Language, Translations> = {
     editorPlaceholder:
       '在此貼上歌詞，然後點擊生成 ✨\n\n或直接使用標記：\n｜漢字｜かな｜\n\n示例：\n｜今日｜きょう｜は｜良｜よ｜い｜天気｜てんき｜です',
     previewEmpty: '預覽將顯示在此處⋯⋯',
-    footerText: '© 2026 Furioke — 帶振り仮名的日語歌詞',
+    footerText: '© 2026 Easykanji — 帶振り仮名的日語歌詞',
     dropOverlay: '拖放 JSON 檔案以匯入',
     translation: '翻譯',
     translationOff: '關閉',
@@ -103,7 +103,7 @@ export const translations: Record<Language, Translations> = {
     editorPlaceholder:
       'ここに歌詞を貼り付けて、生成をクリック ✨\n\nまたは直接マークアップを使用：\n｜漢字｜かな｜\n\n例：\n｜今日｜きょう｜は｜良｜よ｜い｜天気｜てんき｜です',
     previewEmpty: 'プレビューがここに表示されます⋯',
-    footerText: '© 2026 Furioke — 振り仮名付き日本語歌詞',
+    footerText: '© 2026 Easykanji — 振り仮名付き日本語歌詞',
     dropOverlay: 'JSON ファイルをドロップして読み込む',
     translation: '翻訳',
     translationOff: 'オフ',

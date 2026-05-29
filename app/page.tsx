@@ -34,7 +34,7 @@ export default function Page() {
 
   useEffect(() => {
     const storedLayout = localStorage.getItem(
-      'furioke:layout',
+      'easykanji:layout',
     ) as Layout | null;
     if (
       storedLayout === 'both' ||
@@ -43,12 +43,12 @@ export default function Page() {
     ) {
       setLayout(storedLayout);
     }
-    const storedTitle = localStorage.getItem('furioke:title');
+    const storedTitle = localStorage.getItem('easykanji:title');
     if (storedTitle !== null) setTitle(storedTitle);
-    const storedLyrics = localStorage.getItem('furioke:lyrics');
+    const storedLyrics = localStorage.getItem('easykanji:lyrics');
     if (storedLyrics !== null) setLyrics(storedLyrics);
     const storedTarget = localStorage.getItem(
-      'furioke:translationTarget',
+      'easykanji:translationTarget',
     ) as TranslationTarget | null;
     if (
       storedTarget === 'off' ||
@@ -62,22 +62,22 @@ export default function Page() {
 
   useEffect(() => {
     if (!hydrated.current) return;
-    localStorage.setItem('furioke:layout', layout);
+    localStorage.setItem('easykanji:layout', layout);
   }, [layout]);
 
   useEffect(() => {
     if (!hydrated.current) return;
-    localStorage.setItem('furioke:title', title);
+    localStorage.setItem('easykanji:title', title);
   }, [title]);
 
   useEffect(() => {
     if (!hydrated.current) return;
-    localStorage.setItem('furioke:lyrics', lyrics);
+    localStorage.setItem('easykanji:lyrics', lyrics);
   }, [lyrics]);
 
   useEffect(() => {
     if (!hydrated.current) return;
-    localStorage.setItem('furioke:translationTarget', translationTarget);
+    localStorage.setItem('easykanji:translationTarget', translationTarget);
   }, [translationTarget]);
 
   function cycleLayout() {
@@ -131,7 +131,7 @@ export default function Page() {
       .replace(/</g, '&lt;')
       .replace(/>/g, '&gt;');
     win.document.write(`<!DOCTYPE html>
-<html><head><meta charset="utf-8"><title>${safeTitle || 'Furioke'}</title>
+<html><head><meta charset="utf-8"><title>${safeTitle || 'Easykanji'}</title>
 <style>
 body {
   font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', 'Yu Mincho', serif;
@@ -148,7 +148,7 @@ ruby { break-inside: avoid; }
 @page {
   margin-bottom: 2.5cm;
   @bottom-center {
-    content: "Made with furioke.com";
+    content: "Made with easykanji.com";
     font-size: 9pt;
     color: #999;
   }

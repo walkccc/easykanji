@@ -31,12 +31,12 @@ export function Navbar() {
       <div className="mx-auto flex w-full max-w-7xl items-center gap-2.5">
         <Image
           src={`${process.env.NEXT_PUBLIC_BASE_PATH}/favicon.png`}
-          alt="Furioke"
+          alt="Easykanji"
           width={28}
           height={28}
           className="rounded-md select-none"
         />
-        <span className="text-base font-semibold tracking-tight">Furioke</span>
+        <span className="text-base font-semibold tracking-tight">Easykanji</span>
 
         <div className="ml-auto flex items-center gap-2">
           <Button

@@ -21,7 +21,7 @@ export const viewport = {
 };
 
 export const metadata: Metadata = {
-  title: 'Furioke — Japanese Lyrics with Furigana',
+  title: 'Easykanji — Japanese Lyrics with Furigana',
   description:
     'Paste Japanese song lyrics and auto-generate furigana (振り仮名) for easy karaoke reading.',
   icons: {

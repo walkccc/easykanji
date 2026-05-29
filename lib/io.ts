@@ -11,7 +11,7 @@ export function exportJson(title: string, lyrics: string): void {
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = `${title.trim() || 'furioke'}.json`;
+  a.download = `${title.trim() || 'easykanji'}.json`;
   a.click();
   URL.revokeObjectURL(url);
 }

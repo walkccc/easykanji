@@ -132,8 +132,8 @@ function escapeXml(s: string): string {
 }
 
 export function exportEpub(title: string, html: string): void {
-  const safeTitle = escapeXml(title.trim() || 'Furioke');
-  const uid = `furioke-${Date.now()}`;
+  const safeTitle = escapeXml(title.trim() || 'Easykanji');
+  const uid = `easykanji-${Date.now()}`;
 
   const zip = buildZip([
     {
@@ -228,7 +228,7 @@ ruby rt { font-size: 0.5em; line-height: 1; }
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = `${title.trim() || 'furioke'}.epub`;
+  a.download = `${title.trim() || 'easykanji'}.epub`;
   a.click();
   URL.revokeObjectURL(url);
 }
